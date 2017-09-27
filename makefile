@@ -4,8 +4,10 @@ HPPS := $(shell ls src/*.hpp)
 TEMP := $(subst src/,obj/,$(CPPS))
 OBJS := $(subst .cpp,.o,$(TEMP))
 
-INCLUDES := -isystem lib/mavlink/v1.0
-LINKER_FLAGS := -pthread -lboost_system -lboost_log 
+MAVLINK_DIR := lib/mavlink/v1.0
+
+INCLUDES := -isystem $(MAVLINK_DIR) 
+LINKER_FLAGS := -pthread -lboost_system -lboost_log -lhackrf
 
 CC := clang++ --std=c++14
 CFLAGS := -Wall -Wpedantic -Werror -g
