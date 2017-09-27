@@ -23,8 +23,21 @@
 #include <termios.h>
 #include <unistd.h>
 
+namespace SerialPort {
+
+class SerialPortException: public std::exception {
+    using std::exception::what;
+public:
+    SerialPortException(std::string msg_): msg(msg_){}
+    ~SerialPortException() throw() {};
+
+    const char* what();
+private:
+    std::string msg;
+};
+
 /// What state the serial port is currently in
-enum SerialPortStatus {
+enum Status {
     Open, /// Indicates the file descriptor representing the serial port is open
     Closed, /// Indicates the file descriptor representing the serial port is
             /// closed
@@ -49,7 +62,7 @@ class SerialPort {
     int write(char *buf, size_t len);
 
   private:
-    SerialPortStatus status;
+    Status status;
 
     int fd;
     int baudrate;
@@ -57,5 +70,7 @@ class SerialPort {
 
     std::mutex mutex; // ptr allows for move
 };
+
+}
 
 #endif

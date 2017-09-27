@@ -6,6 +6,8 @@
 
 #include "serial_port.hpp"
 
+namespace SerialPort {
+
 /// Creates serial port with default options:
 ///     * port_name: /dev/ttyUSB0
 ///     * baudrate: 57600
@@ -14,7 +16,7 @@
 /// the pthread_mutex
 SerialPort::SerialPort() {
     BOOST_LOG_TRIVIAL(trace) << "SerialPort()";
-    status = SerialPortStatus::Closed;
+    status = Status::Closed;
 
     fd = -1;
     port_name = std::string("/dev/ttyUSB0");
@@ -29,7 +31,7 @@ SerialPort::SerialPort() {
 /// @param _port_name name of serial port
 /// @param _baudrate baudrate of serial port
 SerialPort::SerialPort(std::string _port_name, int _baudrate)
-    : status(SerialPortStatus::Closed), fd(-1), baudrate(_baudrate),
+    : status(Status::Closed), fd(-1), baudrate(_baudrate),
       port_name(_port_name) {
     BOOST_LOG_TRIVIAL(trace)
         << "SerialPort(" << _port_name << ", " << _baudrate << ")";
@@ -37,7 +39,7 @@ SerialPort::SerialPort(std::string _port_name, int _baudrate)
 
 /// Closes the serial port and destroys the pthread_mutex
 SerialPort::~SerialPort() {
-    if (status == SerialPortStatus::Open) {
+    if (status == Status::Open) {
         close();
     }
 }
@@ -53,7 +55,7 @@ void SerialPort::open() {
     // Open the file descriptor
     fd = ::open(port_name.c_str(), O_RDWR | O_NOCTTY | O_NDELAY);
     if (fd == -1) {
-        throw std::runtime_error("Failed to open serial port");
+        throw SerialPortException("Failed to open serial port");
     }
     fcntl(fd, F_SETFL,
         0); // No append, no async, no direct, no atime, no nonblocking
@@ -65,7 +67,7 @@ void SerialPort::open() {
 
     struct termios config;
     if (tcgetattr(fd, &config) < 0) {
-        throw std::runtime_error(strerror(errno));
+        throw SerialPortException(strerror(errno));
     }
 
     // Input flags
@@ -123,19 +125,19 @@ void SerialPort::open() {
         break;
     default:
         // TODO: Can this be sanitized elsewhere
-        throw std::runtime_error("Unrecognized baud rate");
+        throw SerialPortException("Unrecognized baud rate");
         break;
     }
     if (result != 0) {
-        throw std::runtime_error(strerror(errno));
+        throw SerialPortException(strerror(errno));
     }
 
     // Where the configuration is actually set
     if (tcsetattr(fd, TCSAFLUSH, &config) < 0) {
-        throw std::runtime_error(strerror(errno));
+        throw SerialPortException(strerror(errno));
     }
 
-    status = SerialPortStatus::Open;
+    status = Status::Open;
 }
 
 /// Closes serial port by file descriptor and sets status
@@ -146,7 +148,7 @@ void SerialPort::close() {
     if (result) {
         perror("Serial Port");
     }
-    status = SerialPortStatus::Closed;
+    status = Status::Closed;
 }
 
 /// Attempts to read a byte into cp. Mutex is locked during read
@@ -157,7 +159,7 @@ void SerialPort::close() {
 /// -1.
 int SerialPort::read(uint8_t &cp) {
     BOOST_LOG_TRIVIAL(trace) << "SerialPort::read(" << &cp << ")";
-    if (status != SerialPortStatus::Open) {
+    if (status != Status::Open) {
         BOOST_LOG_TRIVIAL(warning)
             << "Port not opened before read. Attempting to open...";
         open();
@@ -185,4 +187,6 @@ int SerialPort::write(char *buf, size_t len) {
     mutex.unlock();
 
     return bytes_written;
+}
+
 }
