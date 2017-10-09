@@ -1,0 +1,6 @@
+[submodule "lib/mavlink/v1.0"]
+	path = lib/mavlink/v1.0
+	url = git://github.com/mavlink/c_library.git
+[submodule "lib/hackrf"]
+	path = lib/hackrf
+	url = git://github.com/mossmann/hackrf.git
