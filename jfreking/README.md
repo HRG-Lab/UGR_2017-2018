@@ -10,6 +10,6 @@ Libraries required:
   
 In progress:
   - Boxing in recognized object to get pixel information
-    -- Possible solution with tensorbox (https://github.com/Russell91/TensorBox)
-  
+    - Possible solution with tensorbox (https://github.com/Russell91/TensorBox)
+    - Other solution may involve switching to dlib for object detection/recognition (https://github.com/davisking/dlib)
   - Calibrations with Kinect using freenect
