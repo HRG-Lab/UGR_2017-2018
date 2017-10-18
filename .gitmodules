@@ -1,0 +1,6 @@
+[submodule "cafeclimber/datalogger/lib/hackrf"]
+	path = cafeclimber/datalogger/lib/hackrf
+	url = git://github.com/mossmann/hackrf.git
+[submodule "cafeclimber/datalogger/lib/mavlink/v1.0"]
+	path = cafeclimber/datalogger/lib/mavlink/v1.0
+	url = git://github.com/mavlink/c_library_v1
