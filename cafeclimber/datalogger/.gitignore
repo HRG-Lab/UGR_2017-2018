@@ -1,4 +1,3 @@
 build/
 docs/html
 docs/latex
-cmake/modules/CMakeLists.txt.in
