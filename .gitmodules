@@ -4,3 +4,6 @@
 [submodule "cafeclimber/datalogger/lib/mavlink/v1.0"]
 	path = cafeclimber/datalogger/lib/mavlink/v1.0
 	url = git://github.com/mavlink/c_library_v1
+[submodule "cafeclimber/datalogger/lib/libxbee3"]
+	path = cafeclimber/datalogger/lib/libxbee3
+	url = git://github.com/attie/libxbee3.git
