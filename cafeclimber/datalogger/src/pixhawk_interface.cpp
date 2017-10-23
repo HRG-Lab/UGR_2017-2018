@@ -153,12 +153,8 @@ std::string PixhawkInterface::decode_message(const mavlink_message_t &message) {
         message_string << "[GPS FIX] ENUM: " << (unsigned int)gps.fix_type;
         break;
     }
-    case MAVLINK_MSG_ID_RADIO_STATUS: {
-        throw PixhawkException("GOT THE THING!!!!!!!!!");
-        break;
-    }
     default:
-        unhandled_msg_ids.insert(message.msgid);
+        //unhandled_msg_ids.insert(message.msgid);
         break;
     }
     return message_string.str();

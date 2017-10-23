@@ -61,11 +61,14 @@ add_executable(datalogger
   src/datalogger.cpp
   src/serial_port.cpp
   src/pixhawk_interface.cpp
-  src/hackrf_interface.cpp)
+  src/hackrf_interface.cpp
+  src/xbee.cpp)
 target_link_libraries(datalogger
   Threads::Threads
   ${Boost_LIBRARIES}
-  hackrf)
+  hackrf
+  xbee
+  xbeep)
 
 add_executable(runTests
   tests/test.cpp

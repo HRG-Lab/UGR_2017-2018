@@ -8,6 +8,7 @@
 
 #include "hackrf_interface.hpp"
 #include "pixhawk_interface.hpp"
+#include "xbee.hpp"
 
 #include <boost/log/core.hpp>
 #include <boost/log/expressions.hpp>

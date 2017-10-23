@@ -16,6 +16,7 @@
 /// @return Result of execution
 int main(int argc, char **argv) {
     char *device = DEFAULT_SERIAL_PORT;
+    std::string xbee = std::string("/dev/ttyUSB1");
     int baudrate = DEFAULT_BAUDRATE;
     char *log_level = DEFAULT_LOGLEVEL;
 
@@ -25,10 +26,11 @@ int main(int argc, char **argv) {
         {"help", no_argument, 0, 'h'},
         {"device", required_argument, 0, 'd'},
         {"baudrate", required_argument, 0, 'b'},
+        {"xbee", required_argument, 0, 'x'},
         {"loglevel", required_argument, 0, 'l'},
         {NULL, 0, NULL, 0}};
 
-    while ((ch = getopt_long(argc, argv, "d:b:l:", long_options, NULL)) != -1) {
+    while ((ch = getopt_long(argc, argv, "d:x:b:l:", long_options, NULL)) != -1) {
         switch (ch) {
         case 'd': {
             device = optarg;
@@ -37,6 +39,10 @@ int main(int argc, char **argv) {
         case 'b': {
             baudrate = atoi(optarg);
             // TODO: Check baudrate here
+            break;
+        }
+        case 'x': {
+            xbee = optarg;
             break;
         }
         case 'l': {
@@ -66,21 +72,32 @@ int main(int argc, char **argv) {
         pixhawk_interface =
             std::make_unique<Pixhawk::PixhawkInterface>(device, baudrate);
 
-        for (;;) {
-            if (sigprocmask(SIG_BLOCK, &mask, NULL) != 0) {
-                break;
+        libxbee::XBee xbee("xbee1", "/dev/ttyUSB1", 57600);
+        {
+            struct xbee_conAddress addr = {};
+            memset(&addr, 0, sizeof(addr));
+            addr.addr64_enabled = 1;
+            unsigned char xbee_addr[8] = {0x00, 0x13, 0xA2, 0x00,
+                                          0x40, 0x9A, 0x7E, 0x0C};
+            memcpy(addr.addr64, xbee_addr, 8);
+            XBee::XBeeConnection xbee_con(xbee, "64-bit Data", &addr);
+            
+            for (;;) {
+                if (sigprocmask(SIG_BLOCK, &mask, NULL) != 0) {
+                    break;
+                }
+                auto read_fut = std::async(std::launch::async,
+                                           &Pixhawk::PixhawkInterface::read_all,
+                                           pixhawk_interface.get());
+                auto message = read_fut.get();
+                if (message != "") {
+                    std::cout << message << std::endl;
+                }
+                if (sigprocmask(SIG_UNBLOCK, &mask, NULL) != 0) {
+                    break;
+                }
+                usleep(10000);
             }
-            auto read_fut = std::async(std::launch::async,
-                                       &Pixhawk::PixhawkInterface::read_all,
-                                       pixhawk_interface.get());
-            auto message = read_fut.get();
-            if (message != "") {
-                std::cout << message << std::endl;
-            }
-            if (sigprocmask(SIG_UNBLOCK, &mask, NULL) != 0) {
-                break;
-            }
-            usleep(10000);
         }
 
     } catch (SerialPort::SerialPortException &e) {
@@ -147,6 +164,7 @@ void print_help() {
     printf("\t-h, --help\tDisplay this help text\n");
     printf("\t-d, --device\tThe device id for the Pixhawk [default: "
            "/dev/ttyUSB0]\n");
+    printf("\t-x, --xbee\tThe device id for the RX XBee [default: TODO]\n");
     printf("\t-b, --baudrate\tThe baudrate for communicating with the "
            "Pixhawk [default: 57600]\n\n");
     printf("\t-l --loglevel\tThe level of logs to display from:\n");
