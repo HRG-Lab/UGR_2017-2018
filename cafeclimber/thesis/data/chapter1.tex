@@ -1,0 +1,186 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  New template code for TAMU Theses and Dissertations starting Fall 2016.
+%
+%
+%  Original Author: Sean Zachary Roberson
+%  This version adapted for URS by Parasol lab.
+%  Adapted from version 3.16.10, which was last updated on 9/29/2016.
+%  URS adaptation last updated 1/9/2017.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                           SECTION I
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\pagestyle{plain} % No headers, just page numbers
+%\pagenumbering{arabic} % Arabic numerals
+%\setcounter{page}{1}
+
+\chapter{INTRODUCTION AND LITERATURE REVIEW}
+
+\section{Read Me}
+
+This template is derived from Texas A\&M University's Graduate \LaTeX thesis template found on their website on December 7th 2016. This template is to be used for Undergraduate
+Research Scholars program at Texas A\&M. This template shows the many features of \LaTeX, with many more available to the user.
+
+There are numerous guides, references, and tutorials available on the Internet to help you. If you are stuck, don't be afraid to conduct a Google search for your issue.
+
+\subsection{Changes}
+
+The changes made to the thesis template:
+\begin{itemize}
+  \item Added appropriate commands for the title, program, advisor, and department. Commands needed for the graduate thesis were removed.
+  \item Modified the introduction of the template to be more accurate.
+  \item Reformatted the title page to follow URS formatting rules.
+  \item Reformatted the abstract page to follow URS formatting rules.
+  \item Condensed the appendices to one page.
+  \item Changed the section file names to chapter to be more concise naming convention.
+  \item Added a makefile to compile the document.
+  \item Various updates made for URS 2018. These include title formatting, TOC
+    location, spelling/grammar errors, and more.
+\end{itemize}
+
+\subsection{Useful Resources and Websites}
+
+Here are some useful tutorials and references on \LaTeX:
+\begin{itemize}
+  \item http://www.latex-tutorial.com/tutorials/
+  \item http://www.cs.princeton.edu/courses/archive/spr10/cos433/Latex/latex-guide.pdf
+  \item https://www.sharelatex.com/learn/Main\_Page
+  \item https://tobi.oetiker.ch/lshort/lshort.pdf
+  \item ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf
+\end{itemize}
+
+\subsection{Brief Usage of the Template}
+
+This template is intended for use by STEM\footnote{Science, Technology, Engineering, and Mathematics. This is an example of a footnote. You can see that it is numbered and appended at the end of the page. Also, you can see the effect of having a multiline footnote.} students. If you are not a STEM student, this template is likely not for you.
+
+The advantage of using this template over the Microsoft Word templates are
+numerous. First, there is a lot of control granted to the user in how the
+document looks. Of course, you are expected to still follow the guidelines set
+forth in the URS Thesis Manual. This template takes care of the margins, heading requirements, and front matter ordering for you.
+
+
+\subsection{Software to Install}
+
+\textbf{TeXworks} and \textbf{TeXstudio} for Windows, MaxOS, and Linux are free software for compiling
+your \LaTeX ~ document. To compile for this document, \textit{pdflatex} or \textit{xelatex} compiling engine
+should be used. Make sure you are using bibtex for generating references. Do not use \textit{latex} compiling
+engine if you are using png images because it will not know the size of the image.
+
+\subsection{Procedure to Compile \LaTeX ~ Document}
+
+This template (and consequently, your document) will be compiled using latex. To compile your document, do the following\footnote{Notice here that I also show off the itemize environment for unordered lists. Ordered lists use the enumerate environment.}:
+
+\begin{itemize}
+	\item In TeXstudio, go to the Tools menu, then select Commands, and click pdfLaTeX or XeLatex.
+	\item In TeXworks, go to the Typeset menu and select pdfLaTeX or XeLatex.
+	\item For other editors, consult the help files included with the editor.
+\end{itemize}
+
+If you are working in linux and want to use gnumake, make sure you have pdfLaTeX or XeLaTeX installed. To build on Linux, open a terminal, go to the
+thesis directory and type \texttt{make} and hit enter. The document will build and create a file called \texttt{thesis.pdf} that will be your thesis.
+
+To use make on MaxOS, commandline tools must be installed from Xcode. If it is not already install I do not recommend using this because
+the Xcode is a large install and it might be advantageous to use one of the other mentioned methods.
+
+\subsection{How to Fill This Document}
+The document structure is organized in the main .tex file, thesis.tex,
+which has the same name as the output PDF file. Content in each section is in the data folder. You can open the .tex files under the data folder to modify. Four sections
+are added initially. To add in more sections into the \LaTeX document, open the
+thesis.tex file and go to \textbf{line 137} you can just delete the content in the data folder and fill your documents and then compile under thesis.tex.)
+
+\subsection{Reference Usage and Example}
+
+This subsection tests the usage of references. The book\cite{REALCAR} is
+referred in this way. Actually, the option is available for you to change the
+default way how reference appears. The default and most commonly used option
+\cite{einstein} is displayed here \cite{Barn-JORVQ}.
+
+Unrelated citations are referred here for the test of reference section only. If
+you find that the reference has more items than you need \cite{WAGFJ}, question
+marks will show up in place of a reference handle, like these
+\cite{a-reference-thats-not-in-your-bib-file}.
+
+\subsection{Where to Start}
+
+Getting started in \LaTeX can be a daunting task. To get started I recommend getting your the information into the
+preliminary pages (abstract, acknowledgements, dedication, and nomenclature) as a way to learning how to move around
+the different files. The information in the preliminary pages is controlled by fields located in
+the files thesis.tex, and it allows you to enter the information into the template a single time. To modify
+the preliminary pages in this template, follow these steps:
+
+\begin{enumerate}
+
+  \item Open the file thesis.tex in your \LaTeX\ editor.
+    \begin{enumerate}
+      \item Locate the command \texttt{{\textbackslash}title} and type your thesis title there.
+      \item Locate the command \texttt{{\textbackslash}author} and type your name there.
+      \item Locate the command \texttt{{\textbackslash}program}. Do not change this, it is already correct.
+      \item Locate the command \texttt{{\textbackslash}ursadvisor} and type your research advisor's name there. Do not put
+            "Dr." before their name; the template will do this for you.
+      \item Locate the command \texttt{{\textbackslash}department} and type your primary department. If you have a secondary
+            department, it isn't necessary for you to include it. You do not need to include the text "Department of" before
+            the department names; the template will do this for you.
+      \item Locate the command \texttt{{\textbackslash}advisordepartment} and type your advisor's department there. Again,
+            you do not need to add "Department of".
+    \end{enumerate}
+  \item Save the file thesis.tex and open abstract.tex in the data directory
+  \item Type your abstract after the \texttt{{\textbackslash}indent}.  Remember that your abstract should be no longer than 350 words.
+        Do not change anything else in the file. The rest of the file is formatting the abstract's header.
+
+  \item Save the file abstract.tex and open dedication.tex in the data directory
+  \item Type your dedication between the \texttt{{\textbackslash}begin\{center\}} and \texttt{{\textbackslash}end\{center\}}
+        commands and between the \texttt{{\textbackslash}vspace*} commands. This section is optional, and if you do not wish
+        to include it, comment out the line \texttt{{\textbackslash}\{data/dedication\}} on \textbf{line 124} of thesis.tex
+        by placing a \texttt{\%\texttt} character before the line. This will completely remove the dedication page.
+
+  \item Save the file dedication.tex and open acknowledgements.tex in the data directory
+  \item Type your acknowledgments after the \texttt{{\textbackslash}indent} command. This section is optional, and if you do not wish
+        to include it, comment out the line \texttt{{\textbackslash}\{data/acknowledgments\}} on \textbf{line 125} of thesis.tex
+        by placing a \texttt{\%\texttt} character before the line. This will completely remove the acknowledgments page.
+
+  \item Save the file acknowledgments.tex and open nomenclature.tex in the data directory
+  \item Type your nomenclature between \texttt{{\textbackslash}begin\{tabular\}} and \texttt{{\textbackslash}end\{tabular\}}.
+        Within the table the abbreviation will be to the left of the \& and what it means will be the right. Use the examples
+        already provided if you need more clarification. This section is optional, and if you do not wish to include it,
+        comment out the line \texttt{{\textbackslash}\{data/acknowledgments\}} on \textbf{line 126} of thesis.tex
+        by placing a \texttt{\%\texttt} character before the line. This will completely remove the nomenclature page.
+  \item Save the file nomenclature.tex.
+  \item Compile the document from thesis.tex. This is considered the \texttt{main} file for your thesis document.
+  \item thesis.pdf should now contain the changes you made to the template. If you received any error messages
+        use google or other resources provided to figure out what they mean and how to correct them.
+\end{enumerate}
+
+\subsection{Equations, Formulas, and Other Really Cool Math Things That \LaTeX ~ Can Do}
+
+Equations can be written in \LaTeX ~ in one of two ways. First, you can have material displayed inline by enclosing the desired statement in dollar signs. For example, $e^{i\pi}+1=0$ is an inline math expression. Some longer expressions, especially those including sums, integrals, or large operators and objects can be displayed centered on their own line. In this \textbf{math mode}, you enclose the desired material in square brackets. For example,
+
+\[ \sum_{j = 1} ^n \int f_j \ dx = \int \sum_{j = 1} ^n f_j \ dx \]
+is a math mode expression. We can also have a series of expressions aligned at a symbol. This is particularly useful when you are showing details in solving an equation or evaluating an integral. The next block shows off the \textit{align*} environment. We use it here to show a distributive property of set intersections over unions. Observe how each line is aligned to the biconditional symbol. This makes reading steps easier, since a reader can go line by line and determine why each step is justified.
+
+\begin{align*}
+x \in A \cap \bigcup_{j} B_j &\iff x \in A \ \wedge \ x \in \bigcup_{j} B_j \\
+&\iff x \in A \ \wedge \ x \in B_k \ \text{ for some k} \\
+&\iff x \in \bigcup_{j} A \cap B_j
+\end{align*}
+
+There are many more commands and features available, but this document is too small to contain them.\footnote{Yes, I pulled a Fermat. But really, a Google search will likely help you find what you need to do.} Many guides are available on the Internet for your use.
+
+%Have some material about the align environments. Include also the eqn environment.
+
+\subsection{A Test Subheading}
+
+This is just a test.
+
+\subsection{Another Test Subheading}
+Hello, is it me you're looking for?
+
+\subsection{Yet Another One}
+She called me late last night to say she loved me so.
+
+\subsection{No Surprises Here}
+Insert another song lyric here.
+
