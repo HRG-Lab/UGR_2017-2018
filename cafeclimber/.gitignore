@@ -1,0 +1,13 @@
+# LaTeX ignores
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.lof
+*.log
+*.lot
+*.out
+*.pdf
+*.toc
+thesis/auto
+thesis/data/auto
