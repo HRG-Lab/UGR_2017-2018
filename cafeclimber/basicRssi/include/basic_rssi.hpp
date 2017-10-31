@@ -25,6 +25,8 @@
 
 #include <xbeep.h>
 
+#include "packet.hpp"
+
 const std::string DEFAULT_XBEE_PORT = "/dev/ttyUSB0";
 const int DEFAULT_BAUDRATE = 57600;
 

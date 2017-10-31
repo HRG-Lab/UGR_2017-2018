@@ -6,10 +6,13 @@ XBeeConnection::XBeeConnection(libxbee::XBee &parent, std::string type,
 
 void XBeeConnection::xbee_conCallback(libxbee::Pkt **pkt)
 {
-    std::cerr << "[XBEE]: Packet size: " << (*pkt)->size() << std::endl;
     if ((*pkt)->size() > 0) {
-        std::cout << (*pkt)->getData() << std::endl;
-        logfile << (*pkt)->getData() << std::endl;
+        auto rssi = unsigned((*pkt)->getRssi());
+        auto data = (*pkt)->getData().c_str();
+        Packet packet(data);
+
+        std::cout << packet << "," << rssi << std::endl;
+        logfile << packet << "," << rssi << std::endl;
     }
 }
 
@@ -65,6 +68,8 @@ int main(int argc, char **argv) {
     sigaddset(&mask, SIGINT);
 
     logfile = std::ofstream(log_file);
+
+    logfile << "lat,lon,alt,roll,pitch,yaw,rssi" << std::endl;
 
     try {
         libxbee::XBee xbee("xbee1", device, baudrate);

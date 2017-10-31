@@ -25,7 +25,8 @@ include_directories(include)
 include_directories(tests)
 
 add_executable(BasicRSSI
-  src/basic_rssi.cpp)
+  src/basic_rssi.cpp
+  src/packet.cpp)
 target_link_libraries(BasicRSSI
   Threads::Threads
   xbee
