@@ -4,12 +4,12 @@ Computer vision recognition and positioning system using open source Python libr
 
 Libraries required:
   - Numpy
-  - TensorFlow (https://github.com/tensorflow/tensorflow)
-  - OpenCV (https://github.com/opencv/opencv)
+  - dlib
+  - cv2
   - freenect (https://github.com/OpenKinect/libfreenect)
+  - serial
+  - time
   
 In progress:
-  - Boxing in recognized object to get pixel information
-    - Possible solution with tensorbox (https://github.com/Russell91/TensorBox)
-    - Other solution may involve switching to dlib for object detection/recognition (https://github.com/davisking/dlib)
-  - Calibrations with Kinect using freenect
+  - Imporving position accuracy with Kinect
+  - Sending positions to Arduino via serial in real time
