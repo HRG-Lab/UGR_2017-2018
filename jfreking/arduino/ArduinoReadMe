@@ -1,0 +1,9 @@
+arduino_Serial.py
+
+This code shows an example for communication between Python and Arduino via serial.
+
+
+_18_element_cube_test_modified.ino
+
+This code took the Medusa Arduino code that controlled the phase shifters and modified it to take phases
+from a serial connection as input.
