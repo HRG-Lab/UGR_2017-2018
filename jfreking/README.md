@@ -3,13 +3,17 @@
 Computer vision recognition and positioning system using open source Python libraries.
 
 Libraries required:
-  - Numpy
-  - dlib
-  - cv2
+  - numpy
+  - dlib (https://github.com/davisking/dlib)
+  - cv2 (https://github.com/opencv/opencv)
   - freenect (https://github.com/OpenKinect/libfreenect)
   - serial
   - time
   
+Completed:
+  - Kinect accuracy
+  - Communication with Arduino
+
 In progress:
-  - Imporving position accuracy with Kinect
-  - Sending positions to Arduino via serial in real time
+  - Taking RSS Measurements
+  - Making the element finding algorithms of the Medusa code real-time
