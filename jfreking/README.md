@@ -9,10 +9,19 @@ Libraries required:
   - freenect (https://github.com/OpenKinect/libfreenect)
   - serial
   - time
+  - os
+  - sys
+  - pandas
+  - netifaces
+  - socket
   
 Completed:
-  - Kinect accuracy
+  - Object recognition using HoG (Kinect program)
+  - Kinect accuracy calibrations
   - Communication with Arduino
+  - Color tracking with openCV contours (NI program)
+  - Communication with LabView via TCP/IP
+  
 
 In progress:
   - Taking RSS Measurements
