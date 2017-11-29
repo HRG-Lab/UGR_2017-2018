@@ -4,7 +4,14 @@ from socket import *
 import socket
 import os
 import sys
+import pandas as pd
 import netifaces as ni
+
+# Get codewords from Excel file
+codebook = pd.read_excel('/home/jfreking/Desktop/1920_codewords_azimuth_only.xlsx',header=0)
+
+txCodes = codebook['TX Codewords']
+#print txCodes
 
 # Get IP address (check the available links with cmd: ifconfig -- connection may be 'eth0')
 ni.ifaddresses('enp3s0')
@@ -37,10 +44,10 @@ print 'Socket listening'
 
 cap = cv2.VideoCapture(1)
 
-codeword = '12'
+#codeword = '12'
 
 # Uncomment to tune tracker to a different color
-"""
+
 def nothing(x):
     pass
     
@@ -53,10 +60,10 @@ cv2.createTrackbar('Smax', 'HSV Tuner', 0, 255, nothing)
 cv2.createTrackbar('Vmin', 'HSV Tuner', 0, 255, nothing)
 cv2.createTrackbar('Vmax', 'HSV Tuner', 0, 255, nothing)
 
-"""
+
 while True:
     # Uncomment to tune tracker to a different color
-    """
+    
     # Get slider positions
     hMin = cv2.getTrackbarPos('Hmin', 'HSV Tuner')
     hMax = cv2.getTrackbarPos('Hmax', 'HSV Tuner')
@@ -64,12 +71,12 @@ while True:
     sMax = cv2.getTrackbarPos('Smax', 'HSV Tuner')
     vMin = cv2.getTrackbarPos('Vmin', 'HSV Tuner')
     vMax = cv2.getTrackbarPos('Vmax', 'HSV Tuner')
-    """
+    
     
     # Set HSV thresholds
     # Uncomment to tune tracker to a different color
-    lw_range = np.array([117,55,147]) #np.array([hMin,sMin,vMin])
-    up_range = np.array([180,114,234]) #np.array([hMax,sMax,vMax])
+    lw_range = np.array([hMin,sMin,vMin])
+    up_range = np.array([hMax,sMax,vMax])
     
     # Get frame from camera
     ret, frame = cap.read()
@@ -103,109 +110,9 @@ while True:
         Y = y+h/2
         
         #resolution: 1920x1080
-        if (X <= 80):
-            codeword = '00'
-        elif (X > 80 and X <= 160):
-            codeword = '01'
-        elif (X > 160 and X <= 240):
-            codeword = '02'
-        elif (X > 240 and X <= 320):
-            codeword = '03'
-        elif (X > 320 and X <= 400):
-            codeword = '04'
-        elif (X > 400 and X <= 480):
-            codeword = '05'
-        elif (X > 480 and X <= 560):
-            codeword = '06'
-        elif (X > 560 and X <= 640):
-            codeword = '07'
-        elif (X > 640 and X <= 720):
-            codewrod = '08'
-        elif (X > 720 and X <= 800):
-            codeword = '09'
-        elif (X > 800 and X <= 880):
-            codeword = '10'
-        elif (X > 880 and X <= 960):
-            codeword = '11'
-        elif (X > 960 and X <= 1040):
-            codeword = '12'
-        elif (X > 1040 and X <= 1120):
-            codeword = '13'
-        elif (X > 1120 and X <= 1200):
-            codeword = '14'
-        elif (X > 1200 and X <= 1280):
-            codeword = '15'
-        elif (X > 1280 and X <= 1360):
-            codeword = '16'
-        elif (X > 1360 and X <= 1440):
-            codeword = '17'
-        elif (X > 1440 and X <= 1520):
-            codeword = '18'
-        elif (X > 1520 and X <= 1600):
-            codeword = '19'
-        elif (X > 1600 and X <= 1680):
-            codeword = '20'
-        elif (X > 1680 and X <= 1760):
-            codeword = '21'
-        elif (X > 1760 and X <= 1840):
-            codeword = '22'
-        elif (X > 1840 and X <= 1920):
-            codeword = '23'
-        else:
-            codeword = '11'
+        codeword = str(txCodes[X])
         
-        """
-        if (X < 320 and Y < 270):
-            codeword = '01'
-        elif (X < 320 and (Y >= 270 and Y < 540)):
-            codeword = '02'
-        elif X < 320 and (Y >=5400 and Y < 810):
-            codeword = '03'
-        elif X < 320 and Y >= 810:
-            codeword = '04'
-        elif (X >= 320 and X < 640) and Y < 270:
-            codeword = '05'
-        elif (X >= 320 and X < 640) and (Y >= 270 and Y < 540):
-            codeword = '06'
-        elif (X >= 320 and X < 640) and (Y >= 540 and Y < 810):
-            codeword = '07'
-        elif (X >= 320 and X < 640) and Y >= 810:
-            codeword = '08'
-        elif (X >= 640 and X < 960) and Y < 270:
-            codeword = '09'
-        elif (X >= 640 and X < 960) and (Y >= 270 and Y < 540):
-            codeword = '10'
-        elif (X >= 640 and X < 960) and (Y >= 540 and Y < 810):
-            codeword = '11'
-        elif (X >= 640 and X < 960) and Y >= 810:
-            codeword = '12'
-        elif (X >= 960 and X < 1280) and Y < 270:
-            codeword = '13'
-        elif (X >= 960 and X < 1280) and (Y >= 270 and Y < 540):
-            codeword = '14'
-        elif (X >= 960 and X < 1280) and (Y >= 540 and Y < 810):
-            codeword = '15'
-        elif (X >= 960 and X < 1280) and Y >= 810:
-            codeword = '16'
-        elif (X >= 1280 and X < 1600) and Y < 270:
-            codeword = '17'
-        elif (X >= 1280 and X < 1600) and (Y >= 270 and Y < 540):
-            codeword = '18'
-        elif (X >= 1280 and X < 1600) and (Y >= 540 and Y < 810):
-            codeword = '19'
-        elif (X >= 1280 and X < 1600) and Y >= 810:
-            codeword = '20'
-        elif X >= 1600 and Y < 270:
-            codeword = '21'
-        elif X >= 1600 and (Y >= 270 and Y < 540):
-            codeword = '22'
-        elif X >= 1600 and (Y >= 540 and Y < 810):
-            codeword = '23'
-        elif X >= 1600 and Y >= 810:
-            codeword = '24'
-        else:
-            codeword = '12'
-        """
+        
         #DEGBUGGING
         """
         print("x: {}".format(X))
