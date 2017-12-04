@@ -34,7 +34,7 @@ def plot_nodes(nodes_x, nodes_y, n=1):
 		label = str(i+1)
 		plt.annotate(label,xy=[nodes_x[i],nodes_y[i]],xytext=(5,-5),textcoords='offset points')
 
-def plot_seg_power(segments, good_index, Transmitters, received_power, n=2):
+def plot_seg_power(segments, Transmitters, received_power, n=2):
 	segments_powers = [None]*len(segments)
 	segments_rss = [None]*len(segments)
 	for i,seg in enumerate(segments):

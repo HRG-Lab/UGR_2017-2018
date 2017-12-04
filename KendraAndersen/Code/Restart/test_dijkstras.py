@@ -35,13 +35,9 @@ plt.title('Maximum Received Power for Several Transmitters')
 # seg3 = [[50,40],[100,40]]
 # I'm having issues with transmitter at [27,75] having the wrong plots of power
 # So this is the temporary output fix. FIND THE ISSUE AND RESOLVE THIS!!
-# seg1 = [[0,50],[40,50]]
 seg1 = [[50,0],[50,40]]
-# seg2 = [[40,50],[40,100]]
 seg2 = [[50,40],[100,40]]
-# seg3 = [[40,50],[40,0]]
 seg3 = [[50,40],[0,40]]
-# seg4 = [[0,50],[0,0],[40,0]]
 seg4 = [[50,0],[0,0],[0,40]]
 
 # Plot the segments on the maximum power color plot. 

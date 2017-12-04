@@ -106,8 +106,8 @@ plt.title("SNR of Transmitter at [50,50]/Transmitter at [25,25]")
 plot_segments(segments, field_size, n=2)
 plot_nodes(nodes_x,nodes_y,n=2)
 
-# Then test out dijkstra's on it. Do 1/SNR because it tries to MINIMIZE the area 
-# under the curve, but we want it maximized in this case. 
+# Then test out dijkstra's on it. Do SNR because it tries to MINIMIZE the area 
+# under the curve. 
 segments_snr0 = [None]*len(segments_powers)
 for i,seg in enumerate(segments_powers):
 	segments_snr0[i] = np.array(segments_powers[i][0])/np.array(segments_powers[i][1])
