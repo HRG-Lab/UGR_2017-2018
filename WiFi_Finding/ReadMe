@@ -1,4 +1,8 @@
 * Download python-networkmanager
-* Run wifiMonitor.py (in python-networkmanager/Examples) to monitor all wifi signals and save them to a .csv
+
+* Run wifiMonitor.py (in python-networkmanager/examples) to monitor all wifi signals and save them to a .csv
+  - This may need a while loop to continuously monitor signals, I can't remember how I wrote it TBH.
+
 * Run train to train a k-means detector on the datasets
+
 * Run wifiWayfinder.py to make predictions on current location
