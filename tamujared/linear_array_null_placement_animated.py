@@ -38,7 +38,7 @@ def snoi_gen(N, d, scan_ang):
 
 
 # Number of Antennas
-N = 8
+N = 48
 
 # Spacing in wavelengths
 d = 0.5
@@ -129,7 +129,7 @@ def animate(theta, theta_zero_new, theta_zero_old):
         ax.set_ylim(-30, 10)
         ax.set_yticks(array([-30, -20, -10, 0, 10]))
         ax.set_xticks(array([0, -30, -45, -60, -90, -120, -135, -150, 180, 150, 135, 120, 90, 60, 45, 30]) / 180 * pi)
-        plt.plot(deg2rad(theta), AF)
+        plt.plot(deg2rad(theta), AF, linewidth=1.0)
         plt.pause(.0001)
 
 
@@ -141,7 +141,7 @@ while(loop):
     soi=theta_zero_old
     AF = createAF(N,d,soi, snoi)
     ax = plt.subplot(111, polar=True)
-    plt.plot(deg2rad(theta), AF)
+    plt.plot(deg2rad(theta), AF, linewidth=1.0)
     ax.set_ybound(-30, 10)
     ax.set_yticks(array([-30, -20, -10, 0, 10]))
     ax.set_xticks(array([0, -30, -45, -60, -90, -120, -135, -150, 180, 150, 135, 120, 90, 60, 45, 30]) / 180 * pi)
