@@ -38,7 +38,7 @@ def snoi_gen(N, d, scan_ang):
 
 
 # Number of Antennas
-N = 48
+N = 50
 
 # Spacing in wavelengths
 d = 0.5

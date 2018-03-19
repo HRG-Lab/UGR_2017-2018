@@ -1,14 +1,11 @@
-from numpy import sin, cos, exp, pi, arange, log10, deg2rad, max, zeros, array, concatenate, newaxis, min, arccos,\
-    rad2deg
+from numpy import sin, cos, exp, pi, arange, log10, deg2rad, max, zeros, ones, array, concatenate, newaxis, min, arccos,\
+    rad2deg, meshgrid
 from numpy.linalg import inv
 import matplotlib.pyplot as plt
 import mpl_toolkits.mplot3d.axes3d as axes3d
-import numpy as np
-
 
 
 def snoi_gen(N, d, scan_ang):
-
     """ This is a function which is intended to calculate null locations for a uniformly spaced linear array """
 
     scan_ang = deg2rad(scan_ang)
@@ -76,42 +73,64 @@ v_psi_d_real = v_psi_d.real
 v_psi_d_imag = v_psi_d.imag
 w = inv(v_psi_d).T @ Bd.T
 
+w = ones(len(w))
+print('w =', w)
+
 # Parameters prior sampling of the Beampattern
-sample = 400
+sample = 90
 phi = arange(0, 360, (360/sample))
-theta = arange(0, 180, (180/sample))
+theta = arange(0, 90, (90/sample))
 phi = deg2rad(phi)
 theta = deg2rad(theta)
 
 # Calculation of the Beampattern
 BSA_max = 0
 
-v_psi = zeros((len(v_psi_d), len(phi), len(theta)), dtype=complex)
+v_psi = zeros((len(v_psi_d), len(theta), len(phi)), dtype=complex)
 v_psi = array(v_psi)
-B = zeros((len(phi), len(theta)), dtype=complex)
+print('v_psi.shape =', v_psi.shape)
+B = zeros((len(theta), len(phi)), dtype=complex)
+w = array(ones(len(v_psi_d)))[newaxis]
 
 for l in range(0, len(theta)):
     for k in range(0, len(phi)):
-
-        v_psi[:, k, l] = exp(2*pi*d*(cos(phi_el*n)*sin(theta[l])*cos(phi[k])
+        v_psi[:, l, k] = exp(1j*2*pi*d*(cos(phi_el*n)*sin(theta[l])*cos(phi[k])
                                      + sin(phi_el*n)*sin(theta[l])*sin(phi[k])))  # Calculate the Array Manifold
+        # print(w)
+        # print('w.shape =', w.shape)
+        # print('v_psi.shape =', v_psi.shape)
 
-        B[k, l] = w.T @ v_psi[:, k, l]  # Calculate the Array Factor
-
-        if abs(B[k, l]) > BSA_max:
-            BSA_max = abs(B[k, l])
-
-
-B = B / max(abs(B))
-B_max = max(abs(B))
-Bl_max = 20 * log10(B_max)
-B_min = min(abs(B))
-Bl_min = 20 * log10(B_min)
+        B[l, k] = w @ v_psi[:, l, k]  # Calculate the Array Factor
 
 
-bx = abs(B)*sin(theta)*cos(phi)  # convert to cartesian coordinates
-by = abs(B)*sin(theta)*sin(phi)
-bz = abs(B)*cos(theta)
+v_psi_2 = zeros((len(v_psi_d), len(phi)), dtype=complex)
+v_psi_2 = array(v_psi_2)
+B_2 = zeros(len(phi), dtype=complex)
+w_2 = array(ones(len(v_psi_d)))[newaxis]
+
+
+ang = 0
+for k in range(0, len(phi)):
+
+    v_psi_2[:, k] = exp(1j*2*pi*d*(cos(phi_el*n)*sin(deg2rad(ang))*cos(phi[k])
+                                     + sin(phi_el*n)*sin(deg2rad(ang))*sin(phi[k])))  # Calculate the Array Manifold
+
+    B_2[k] = w_2 @ v_psi_2[:, k]  # Calculate the Array Factor
+
+
+B_2 = abs(B_2)
+B_2 = 20*log10(B_2)
+
+
+B = abs(B)
+print('B.max() =', B.max())
+B = 20*log10(B)
+
+theta, phi = meshgrid(theta, phi) # convert to cartesian coordinates
+
+bx = B*sin(theta)*cos(phi)
+by = B*sin(theta)*sin(phi)
+bz = B*cos(theta)
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
@@ -122,6 +141,18 @@ plot = ax.plot_surface(
 plt.ylabel('Y')
 plt.xlabel('X')
 plt.title('Plot')
+
+
+
+# Format Plot (Polar)
+fig = plt.figure()
+ax = plt.subplot(111, polar=True)
+plt.polar(phi, B_2, linewidth=1.0)
+ax.set_ylim(-30, 10)
+ax.set_yticks(array([-30, -20, -10, 0]))
+ax.set_xticks(array(deg2rad([-180, -150, -120, -90, -60, -30, 0, 30, 60, 90, 120, 150])))
+
+
 plt.show()
 
 # fig = plt.figure()

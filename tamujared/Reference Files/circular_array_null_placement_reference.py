@@ -62,7 +62,7 @@ if len(Nulls) != len(Nulls_0):
 phi_d = deg2rad(concatenate((MRA, Nulls)))  # Create this
 
 print('phi_d =', phi_d)
-theta_el = 70  # Choose elevation angle to calculate
+theta_el = 90  # Choose elevation angle to calculate
 theta_el = deg2rad(theta_el)
 phi_el = 2*pi/N  # Placement of array elements
 
