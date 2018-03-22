@@ -45,6 +45,8 @@ _ _ _ _
     * Progress:
         * Found a paper that attempts to do a similar task. They use an LMS method to calculate their weighting functions.
             - Paper Source: <http://ieeexplore.ieee.org/document/5494450/>
+            - van trees book from TAMU Library: <http://web.b.ebscohost.com.lib-ezproxy.tamu.edu:2048/ehost/ebookviewer/ebook?sid=0396d8de-41e6-4195-b42d-2a6633a4c3d0%40sessionmgr102&vid=0&format=EB>
+            - Matlab Code help with the given problems: <https://www.mathworks.com/matlabcentral/fileexchange/46514-optimum-array-processing--van-trees--solutions-and-figures>
     * Goal:
         * Finish creating the weighting function using the above source
 

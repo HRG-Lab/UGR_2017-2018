@@ -1,5 +1,5 @@
 from numpy import sin, cos, exp, pi, arange, log10, deg2rad, max, zeros, ones, array, concatenate, newaxis, min, arccos,\
-    rad2deg, meshgrid, append, linspace
+    rad2deg, meshgrid, append, linspace, concatenate
 from numpy.linalg import inv
 import matplotlib.pyplot as plt
 import mpl_toolkits.mplot3d.axes3d as axes3d
@@ -10,17 +10,25 @@ def snoi_gen(N, d, null_num, theta_null, phi_null):  # (N=8, d=1, null_num=2, th
     n = arange(0, N, 1)
     phi_el = 2 * pi / N
 
-    v_k = array(zeros((N, N), dtype=complex))
-    dv_k = array(zeros((N, N), dtype=complex))
+    v_k = array(zeros(N), dtype=complex)
+    dv_k = array(zeros(N), dtype=complex)
     dv_k2 = array(zeros((N, N), dtype=complex))
     C_0 = array(zeros((N, null_num), dtype=complex))
-    C_1 = array(zeros((N, null_num), dtype=complex))
+    C_1 = array(zeros((N, null_num), dtype=complex))  # am actually unsure of the size
+    C_2 = array(zeros((N, null_num), dtype=complex))  # am actually unsure of the size
 
     for i in range(0, N):
-        v_k[:,i] = exp(1j*2*pi*d*(sin(theta_null[i])*cos((phi_el*n) - phi_null[i])))
-        v_k_real = v_k.real
-        dv_k[:,i] = (1j*2*pi*d)*exp(1j*2*pi*d*(sin(theta_null[i])*cos((phi_el*n) - phi_null[i])))
-        dv_k2[:,i] = -1*(2*pi*d)**2*exp(1j * 2 * pi * d * (sin(theta_null[i]) * cos((phi_el * n) - phi_null[i])))
+        v_k = exp(1j*2*pi*d*(sin(theta_null[i])*cos((phi_el*n) - phi_null[i])))
+        v_k_real = v_k.real  # debug
+        dv_k = (1j*2*pi*d)*exp(1j*2*pi*d*(sin(theta_null[i])*cos((phi_el*n) - phi_null[i])))
+        dv_k2 = -1*(2*pi*d)**2*exp(1j * 2 * pi * d * (sin(theta_null[i]) * cos((phi_el * n) - phi_null[i])))
+
+        C_0[:, i] = v_k
+        C_1[: i] = dv_k
+        C_2[:, i] = dv_k2
+
+    C = concatenate(C_0, C_1)
+    C = concatenate(C, C_2)
 
 
 
@@ -62,6 +70,7 @@ def main():
     BSA_max = 0
 
     w = ones(len(n))
+    w = [0.9*exp(1j*deg2rad(136)), 0.3*exp(1j*deg2rad(0)), 1*exp(1j*deg2rad(271)), 1*exp(1j*deg2rad(283)), 0.9*exp(1j*deg2rad(279)), 0.3*exp(1j*deg2rad(54)), 1*exp(1j*deg2rad(128)), 1*exp(1j*deg2rad(136))]
 
     B = 0
     for k in range(0, len(n)):
