@@ -5,9 +5,9 @@
 
 We are performing an experiment in which we set up multiple antenna arrays in some space which will track an object a moving object while in the presence of a jammer.
 
-###### 2D Render of the Final Project
+<!-- ###### 2D Render of the Final Project -->
 
-<img src="https://user-images.githubusercontent.com/29260218/36869534-bde85992-1d61-11e8-848a-c8eaaedd3720.JPG" width="450">
+<!-- <img src="https://user-images.githubusercontent.com/29260218/36869534-bde85992-1d61-11e8-848a-c8eaaedd3720.JPG" width="450"> -->
 
 - - - -
 
@@ -45,9 +45,18 @@ _ _ _ _
     * Progress:
         * Found a paper that attempts to do a similar task. They use an LMS method to calculate their weighting functions.
             - Paper Source: <http://ieeexplore.ieee.org/document/5494450/>
-            - van trees book from TAMU Library: <http://web.b.ebscohost.com.lib-ezproxy.tamu.edu:2048/ehost/ebookviewer/ebook?sid=0396d8de-41e6-4195-b42d-2a6633a4c3d0%40sessionmgr102&vid=0&format=EB>
-            - Matlab Code help with the given problems: <https://www.mathworks.com/matlabcentral/fileexchange/46514-optimum-array-processing--van-trees--solutions-and-figures>
     * Goal:
         * Finish creating the weighting function using the above source
 
-
+* March 23
+    - Progress:
+        + Found more articles about the weighting method used (Frost LMS Algorithm) and created a weighting algorithm which needs to be debugged.
+            * Van Trees Book: <https://library.tamu.edu> (Type in "Van Trees Array")
+            * Matlab Code help with the given examples and some problems: <https://www.mathworks.com/matlabcentral/fileexchange/46514-optimum-array-processing--van-trees--solutions-and-figures>
+            * Tutorial on how to implement (Cited in Van Trees): <http://ieeexplore.ieee.org/document/774932/>
+    - Goal for this week:
+        *   Need to ask for help/review more on the Frost Algorithm to get it to properly implemented.
+* March 30: Assigned to look over and familiarize ourselves with HFSS
+    - Progress:
+        + Completed multiple tutorials on modelling dipole antennas and the provided tutorial on modelling patch antennas
+___
