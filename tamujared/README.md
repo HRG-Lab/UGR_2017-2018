@@ -3,7 +3,7 @@
 
 ### Description of Current Project ###
 
-We are performing an experiment in which we set up multiple antenna arrays in some space which will track an object a moving object while in the presence of a jammer.
+We are performing an experiment in which we set up multiple antenna arrays in some space which will track a moving object while in the presence of a jammer.
 
 <!-- ###### 2D Render of the Final Project -->
 
@@ -47,7 +47,7 @@ _ _ _ _
             - Paper Source: <http://ieeexplore.ieee.org/document/5494450/>
     * Goal:
         * Finish creating the weighting function using the above source
-
+____
 * March 23
     - Progress:
         + Found more articles about the weighting method used (Frost LMS Algorithm) and created a weighting algorithm which needs to be debugged.
@@ -56,7 +56,37 @@ _ _ _ _
             * Tutorial on how to implement (Cited in Van Trees): <http://ieeexplore.ieee.org/document/774932/>
     - Goal for this week:
         *   Need to ask for help/review more on the Frost Algorithm to get it to properly implemented.
+____
 * March 30: Assigned to look over and familiarize ourselves with HFSS
     - Progress:
         + Completed multiple tutorials on modelling dipole antennas and the provided tutorial on modelling patch antennas
 ___
+
+* April 3: Links to possibly helpful resources
+    - Dr. Huff sent us this link over DOA techniques:
+        + <http://www.faculty.jacobs-university.de/jwallace/xwallace/courses/ap/ch5c.pdf>
+    - MIT Course: Adaptive Antennas and Phased Arrays (look at first couple of lectures for adaptive nulling):
+        + <https://www.ll.mit.edu//workshops/education/videocourses/antennas/index.html>
+    - Mit Course: Recievers, Antennas and Signals:
+        + <https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-661-receivers-antennas-and-signals-spring-2003/>
+
+    - I'm coming to the realization I'm gonna need a deeper understanding of Signal Proceessing
+        + MIT Course: Introduction to Communication, Control, and Signal Processing
+            * <https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-011-introduction-to-communication-control-and-signal-processing-spring-2010/>
+        + MIT Course: Digital Signal Processing
+            * <https://ocw.mit.edu/resources/res-6-008-digital-signal-processing-spring-2011/>
+____
+
+* April 8:
+    - Progress: Set up Josh's HFSS Python Scripts on the HRG lab computers allowing us to manipulate the weights of the antenna beams significantly easier than having to individually punch each individual weight.
+    - Have begun watching some Adaptive Signal Processing Tutorials in order to catch us up to speed on the techniques needed to implement the weighting algorthm.
+        + Intro to Adaptive Filters: <https://www.youtube.com/watch?v=ya0-S1apej8> (Around minute 19, he talks about Antenna Arrays as a simple example)
+    - Great Link for Adaptive Signal Processing 
+        + <http://www.cs.tut.fi/~tabus/course/ASP/Lectures_ASP.html>
+____
+
+* April 13:
+    - Looked over the Adaptive Signal Processing Link
+    - Was able to verify my linear array script in HFSS, see the signal nulling repository for the code I am using below link: <https://github.com/HRG-Lab/Null_Placement>
+        + This code requires this submodule: <https://github.com/HRG-Lab/HFSS_Python/wiki/Including-HFSS_Python>
+____ 

@@ -17,3 +17,7 @@
         + Idk what PML means, but I selected that on the dipole antenna
     * You need to create an analysis and then view results in order to analyze whatver you're doing
 - - - -
+
+* Apr 3
+    - In order to excite the weights, you right click excitations->Edit Sources
+
