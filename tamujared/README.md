@@ -90,3 +90,36 @@ ____
     - Was able to verify my linear array script in HFSS, see the signal nulling repository for the code I am using below link: <https://github.com/HRG-Lab/Null_Placement>
         + This code requires this submodule: <https://github.com/HRG-Lab/HFSS_Python/wiki/Including-HFSS_Python>
 ____ 
+* April 19:
+    - Introduction to Space-Time Wireless Communication: <https://www.scribd.com/document/261312438/Arogyaswami-Paulraj-Rohit-Nabar-Dhananjay-Gore-Introduction-to-Space-time-Wireless-Communications>
+
+___ 
+* April 27:
+    - <https://www.youtube.com/watch?v=hc2Zj55j1zU&t=1684s> LMS taught by Widrow
+    - <https://en.wikipedia.org/wiki/Least_mean_squares_filter> LMS Wikipedia
+
+___
+* May 7
+    - <http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=EB4CCA9B6E66B0BCA383CC923B5A3ECC?doi=10.1.1.105.434&rep=rep1&type=pdf>
+    - <http://www.site.uottawa.ca/~sloyka/elg5132/Lec_1_ELG5132.pdf>
+    <br />
+    - Began script for beamforming using LMS for linear array
+___
+* May 10:
+    - Never added the simulation results to the readme
+    - All tests were done with HFSS in conjuction with a Python script
+    - The picture on the right is the Python Script, picture on the left are the simulated results
+    
+    <br />
+    <img src="https://user-images.githubusercontent.com/29260218/39897858-cb0b3636-5479-11e8-9cce-fc53156e3878.png" width="500"> <br />
+    *Picture of the setup used, 3 antennas with half wavelength spacing* <br /> <br /> <br />
+
+    <img src="https://user-images.githubusercontent.com/29260218/39897694-08cf5bf6-5479-11e8-860f-9c09ade974dc.png" width="500"> <br />
+    *SOI placed at 20 degrees, null placed at 10 degrees* <br /> <br /> <br />
+
+    <img src="https://user-images.githubusercontent.com/29260218/39897820-a2a7c0a6-5479-11e8-9896-d9b1f1a0fefc.png" width="500"> <br />
+    *SOI placed at 20 degrees, null placed at 10 degrees* <br /> <br /> <br />
+
+
+
+
